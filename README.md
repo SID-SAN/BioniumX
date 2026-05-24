@@ -2,75 +2,36 @@
 
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
-[![Documentation Status](https://readthedocs.org/projects/bionium-x/badge/?version=latest)](https://bionium-x.readthedocs.io/en/latest/?badge=latest)
+[![Documentation Status](https://img.shields.io/badge/docs-passing-brightgreen.svg)](docs/_build/html/index.html)
 
-**Bionium-X** is a rigorous, pure-Python scientific library for high-performance exoplanetary biosignature detection and atmospheric modeling. Inspired by the architectural standards of modern astrophysics tools (e.g., Stingray), it provides the foundational mathematical and machine-learning frameworks required for analyzing transmission and emission spectra.
+**Bionium-X** is a rigorous, pure-Python scientific library for high-performance exoplanetary biosignature detection and atmospheric modeling. It provides the foundational mathematical, statistical, and machine-learning frameworks required for analyzing high-resolution transmission and emission spectra.
 
-## 1. Bionium-X
-**Bionium-X** is a research-grade, AI-based open-source platform designed to detect potential biosignatures in exoplanet atmospheres using transmission and emission spectral data. By parsing highly-dimensional signals from orbital telescopes, the system probabilistically estimates the presence of critical biological precursors—thereby advancing the automated search for extraterrestrial life.
+By parsing highly-dimensional signals from orbital telescopes, the system probabilistically estimates the presence of critical biological precursors—thereby advancing the automated search for extraterrestrial life.
 
-## 2. Overview and Scientific Motivation
-The James Webb Space Telescope (JWST) and other upcoming observatories are producing unprecedented volumes of exoplanetary spectral data. Manual interpretation of these noisy signals is computationally bottlenecked. **Bionium-X** introduces an automated machine learning pipeline that filters instrumental noise, standardizes wavelength grids, and applies deep representation learning to identify molecular absorption features of key gases:
-* **Oxygen (O₂)** and **Ozone (O₃)**
-* **Methane (CH₄)**
-* **Water Vapor (H₂O)**
-* **Carbon Dioxide (CO₂)**
+## 🔭 Key Scientific Features
 
-The primary scientific motivation is to identify instances of **Atmospheric Chemical Disequilibrium** (e.g., the simultaneous presence of O₂ and CH₄), which on terrestrial exoplanets serves as a strong proxy for continuously active biological processes.
+* **Real Observational Data Ingestion**: Seamlessly fetch and load real JWST (e.g., WASP-39b) and Hubble spectroscopic data from public archives using the internal `datasets` module.
+* **Astrobiological Physics & Habitability**: Compute Earth Similarity Indices (ESI) and habitability scores constrained by equilibrium temperatures and planetary radii.
+* **Chemical Disequilibrium Detection**: Simultaneously analyze detection significances of multiple reactive molecules (O₂, CH₄, N₂O) to identify highly active, life-supporting atmospheric thermodynamics.
+* **Advanced Signal Processing**: Built-in methods for Savitzky-Golay filtering, 1D Gaussian smoothing, and polynomial continuum normalization for accurate feature extraction.
+* **Template Cross-Correlation**: Native connection to the Harvard HITRAN API via `radis` to fetch theoretical high-resolution absorption templates and perform Voigt-broadened cross-correlation to confidently detect specific gases.
+* **Bayesian Inference**: Compare atmospheric models quantitatively using Bayes Factors to weigh the statistical evidence of biosignatures.
+* **Machine Learning Interoperability**: Experimental 1D CNNs, Random Forests, and Spectral Transformers for automated feature extraction and multi-label probability prediction.
 
-## 3. Key Features
-* **Spectral Ingestion Engine**: Natively parses FITS, HDF5, and CSV datasets from leading astronomical databases.
-* **Physics-Informed Noise Modeling**: Simulates instrumental signatures (JWST NIRSpec, Hubble WFC3) and stellar flare injections to rigorously evaluate model robustness.
-* **Deep Learning Classifiers**: Rapid inference utilizing optimized 1D Convolutional Neural Networks (CNNs) and Spectral Transformers.
-* **Habitability Scoring System**: Integrates thermodynamic constraints (Equilibrium Temperature, Planetary Radius) with AI probabilistic outputs to score overall biological viability.
+## 📖 Documentation
 
-## 4. Scientific Background
-### Transit Spectroscopy and Biosignatures
-When an exoplanet transits its host star, a fraction of the starlight passes through the planet's atmosphere. Specific atmospheric molecules absorb light at characteristic wavelengths, producing a unique **Transmission Spectrum**.
+Bionium-X comes with a fully automated, comprehensive Sphinx documentation suite featuring visual tutorials and a complete API reference.
 
-A single atmospheric gas is rarely indicative of life. However, combinations of highly reactive gases that rapidly destroy each other (such as Methane and Oxygen) violate thermodynamic equilibrium. Unless replenished by geologic or continuous biological processes (like photosynthesis and methanogenesis), these combinations would not persist. Bionium-X identifies these disequilibrium thresholds.
-
-## 5. System Architecture
-The system architecture encompasses a multi-stage pipeline from raw photon flux processing to final classification.
-
-```text
-+---------------------+     +--------------------------+     +------------------------+
-|   Raw Observational |     |  Preprocessing Pipeline  |     |   Deep Learning Core   |
-|   Spectral Data (   | --> | - Wavelength Masking     | --> | - 1D CNN / Transformer |
-|   CSV, FITS, HDF5)  |     | - Continuum Normalization|     | - Feature Extraction   |
-+---------------------+     | - Noise Smoothing (S-G)  |     +-----------+------------+
-                            +--------------------------+                 |
-                                                                         v
-+--------------------------+       +-------------------------------------+------------------+
-| Exoplanet Physics Engine |       | Probability Matrix (O2, CH4, O3, H2O, CO2)             |
-| - Radius Constraints     | ----> | + Chemical Disequilibrium Ruleset Validation           |
-| - Goldilocks Boundaries  |       | = Final Habitability & Biosignature Confidence Score   |
-+--------------------------+       +--------------------------------------------------------+
+To build and view the documentation locally:
+```bash
+cd docs
+make clean && make html
+# Open docs/_build/html/index.html in your browser
 ```
 
-## 6. Project Folder Structure
-```text
-Bionium-X/
-│
-├── data/
-│   ├── raw/                  # Raw downloaded spectra (.csv, .fits, .h5)
-│   ├── processed/            # Normalized datasets
-│   └── exoplanet_catalog.json# Local physics database for targets
-│
-├── src/
-│   ├── data/                 # Ingestion & preprocessing (SG-filters, normalizations)
-│   ├── models/               # PyTorch architectures (CNNs, Transformers, RFs)
-│   └── scoring/              # Habitability constraint mathematics
-│
-├── notebooks/                # Jupyter tutorials for astrophysicists
-├── saved_models/             # Pre-trained core model weights (.pth, .pkl)
-├── tests/                    # Pytest unit & integration tests
-├── app.py                    # Streamlit deployment dashboard
-└── requirements.txt          # Strictly versioned environment dependencies
-```
+## 🚀 Installation Instructions
 
-## 7. Installation Instructions
-This system is strictly validated for Unix/macOS environments running Python 3.8+.
+This system is strictly validated for Unix/macOS environments running Python 3.9+.
 
 ```bash
 # Clone the repository
@@ -85,81 +46,77 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-## 8. Usage Instructions with Example Output
-You can run inference programmatically or via the included interactive Streamlit dashboard.
+## 💻 Quickstart: Detecting CO₂ in WASP-39b
 
-**Launching the Dashboard:**
-```bash
-streamlit run app.py
-```
+Here is a simple example of fetching real JWST data, smoothing it, and using cross-correlation to detect Carbon Dioxide:
 
-**Programmatic Inference Example:**
 ```python
-from src.data.preprocessing import preprocess_pipeline
-from src.models.cnn_1d import CNN1DModel
-import torch
+import matplotlib.pyplot as plt
+from bioniumx.datasets.fetch_real import fetch_wasp39b
+from bioniumx.datasets.ingestion import load_spectrum
+from bioniumx.spectra import TransmissionSpectrum
+from bioniumx.preprocessing import savitzky_golay, continuum_normalize
+from bioniumx.molecules.catalog import get_template
+from bioniumx.detection.cross_correlation import cross_correlate_template, plot_ccf
 
-# Load theoretical spectrum
-wavelengths, raw_flux = load_spectrum('data/raw/K2-18b_transmission.csv')
-clean_wave, clean_flux = preprocess_pipeline(wavelengths, raw_flux)
+# 1. Fetch & Load Real JWST Data
+csv_path = fetch_wasp39b()
+wavelength, flux, noise = load_spectrum(csv_path)
 
-# Initialize loaded model
-model = CNN1DModel(input_length=1000, num_classes=5)
-model.load_state_dict(torch.load('saved_models/cnn_model.pth', map_location='cpu'))
-model.eval()
+spec = TransmissionSpectrum(
+    wavelength=wavelength, transit_depth=flux, err=noise,
+    target_name="WASP-39b", instrument="JWST/NIRISS"
+)
 
-# Predict probabilities
-tensor_flux = torch.tensor(clean_flux, dtype=torch.float32).unsqueeze(0).unsqueeze(0)
-predictions = model(tensor_flux).squeeze().detach().numpy()
+# 2. Preprocess: Smooth and Normalize
+spec_smoothed = savitzky_golay(spec, window=15, polyorder=3)
+spec_norm = continuum_normalize(spec_smoothed, method="polynomial", degree=2)
 
-print(f"O2: {predictions[0]:.2f}, CH4: {predictions[1]:.2f}")
-# Output: O2: 0.88, CH4: 0.91 -> High Disequilibrium!
+# 3. Cross-Correlate against HITRAN CO2 Template
+wl_co2, depth_co2 = get_template("CO2", resolving_power=100)
+result = cross_correlate_template(spec_norm, wl_co2, depth_co2)
+
+# 4. Plot the Peak
+fig, ax = plt.subplots(figsize=(8, 4))
+plot_ccf(result, target_molecule="CO2", ax=ax)
+plt.show()
 ```
 
-## 9. Dataset Sources
-Bionium-X aligns its data structures with and is validated against leading global databases:
-* [NASA Exoplanet Archive](https://exoplanetarchive.ipac.caltech.edu/): Primary source for exoplanet radii, equilibrium temperatures, and stellar parameters.
-* [ExoMol Database](https://www.exomol.com/): Definitive source for comprehensive molecular line lists required to generate accurate synthetic spectra.
-* [HITRAN](https://hitran.org/): High-resolution transmission molecular absorption database utilized for benchmarking Earth-like baseline atmospheric compositions.
+*(For more advanced examples, including Bayesian model comparison and Habitability scoring, please view the `Core Functionality` section of the Sphinx documentation!)*
 
-## 10. Machine Learning Models Used
-1. **Random Forest (Baseline)**: Established as a robust control threshold, operating on explicitly extracted tabular features (equivalent width, line depths).
-2. **1D Convolutional Neural Network (Primary)**: Engineered to parse sequential array structure of 1D spectroscopic data, leveraging local receptive fields to identify variable-width absorption dips unaffected by mild red-shifts.
-3. **Spectral Transformer**: In experimental deployment; utilizes multi-head attention blocks to capture long-range dependencies between distant molecular resonant signatures (e.g., assessing O₂ at 0.76 µm correlated dynamically with O₃ at 9.6 µm).
+## 🧬 Scientific Background
 
-## 11. Evaluation Metrics
-Models are benchmarked using typical multi-label classification standards:
-* **F1-Macro Score**: Ensuring uniform performance regardless of molecule abundance distributions in the training set.
-* **ROCAUC (Receiver Operating Characteristic)**: Evaluating certainty curves against background baseline noise injections.
-* **Inference Latency**: Critical for scalability; the current 1D CNN achieves `< 15ms` per spectrum on standard CPU environments.
+A single atmospheric gas is rarely indicative of life. However, combinations of highly reactive gases that rapidly destroy each other (such as Methane and Oxygen) violate thermodynamic equilibrium. Unless replenished by geologic or continuous biological processes (like photosynthesis and methanogenesis), these combinations would not persist. Bionium-X identifies these disequilibrium thresholds using rigorous statistical models.
 
-## 12. Example Visualizations
-*(Note: Within the application, dynamic Plotly views are generated.)*
+## 📂 Project Structure
 
-When utilizing Bionium-X, researchers have access to:
-1. **Explainable AI Overlays**: Highlights the exact absorption vectors (e.g., 1.4 µm H₂O) triggering the model's confidence logic.
-2. **Radar Charts**: Depicting normalized strength across the 5 primary atmospheric compounds.
+```text
+Bionium-X/
+│
+├── bioniumx/                 # Core scientific library
+│   ├── core.py               # Base class definitions
+│   ├── spectra/              # Transmission and Emission spectrum objects
+│   ├── datasets/             # Fetching and loading routines
+│   ├── preprocessing/        # Filters and Normalization
+│   ├── physics/              # Habitability, equilibrium, and atmospheric properties
+│   ├── molecules/            # HITRAN catalog interfacing & disequilibrium logic
+│   ├── detection/            # Cross-correlation and Bayesian factors
+│   ├── modeling/             # PyTorch and Scikit-Learn deep learning architectures
+│   └── io/                   # HDF5 Input/Output utilities
+│
+├── docs/                     # Comprehensive Sphinx documentation (build with `make html`)
+├── examples/                 # Example scripts and plotting generators
+├── tests/                    # Robust unit testing suite
+└── requirements.txt          # Strictly versioned environment dependencies
+```
 
-## 13. Roadmap / Future Work
-- [ ] Stabilize the **FITS extraction pipeline** to handle raw Hubble WFC3 spatial scans out-of-the-box.
-- [ ] Deploy **Spectral Transformer V2**, expanding classes to include novel biosignatures like Phosphine (PH₃) and Dimethyl Sulfide (DMS).
-- [ ] Integrate **Bayesian Neural Networks** to natively provide true scientific uncertainty metrics alongside point predictions.
-
-## 14. Contribution Guidelines
+## 🤝 Contribution Guidelines
 We welcome collaboration from astrophysicists and deep learning engineers alike! 
 
-Please refer to our [CONTRIBUTING.md](CONTRIBUTING.md) for full instructions on setting up the developer environment, utilizing `pytest`, and creating PRs. All contributors must adhere strictly to our [Code of Conduct](CODE_OF_CONDUCT.md).
+Please refer to the `tests/` directory for our `pytest` suite. When adding new modules, ensure you export them in the `__init__.py` files so the Sphinx `autosummary` can automatically generate their API reference pages.
 
-## 15. License
+## 📄 License
 Bionium-X is released under the **MIT License**. See the `LICENSE` file for more details, enabling unrestricted academic and commercial integration with proper attribution.
-
-## 16. References
-1. Seager, S., et al. (2016). *Toward a List of Molecules as Potential Biosignature Gases for the Search for Life on Exoplanets and Applications to Terrestrial Biochemistry.* Astrobiology.
-2. Krissansen-Totton, J., et al. (2018). *Disequilibrium biosignatures over Earth history and implications for detecting exoplanet life.* Science Advances.
-3. [James Webb Space Telescope (JWST) Science Documentation](https://jwst-docs.stsci.edu/)
-
-## 17. Author Section
-Conceptualized and maintained by the **Bionium-X Research Collaborative**. Contributions originating from individual researchers across independent academic and industrial laboratories. 
 
 <div align="center">
   <i>"Ad Astra Per Algorithmos"</i>
