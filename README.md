@@ -1,27 +1,10 @@
----
-title: Bionium-X Exoplanet Biosignature Detection
-emoji: 🪐
-colorFrom: indigo
-colorTo: purple
-sdk: streamlit
-sdk_version: 1.40.0
-app_file: dashboard/app.py
-pinned: false
----
+# Bionium-X 🌌
 
-<div align="center">
-  <h1>🌌 Bionium-X</h1>
-  <h3>Deep Learning for Biosignature Detection in Exoplanet Atmospheres</h3>
-</div>
+[![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/Python-3.9+-blue.svg)](https://python.org)
+[![Documentation Status](https://readthedocs.org/projects/bionium-x/badge/?version=latest)](https://bionium-x.readthedocs.io/en/latest/?badge=latest)
 
-<p align="center">
-  <img alt="Python" src="https://img.shields.io/badge/python-3.8%2B-blue.svg">
-  <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-%23EE4C2C.svg?logo=PyTorch&logoColor=white">
-  <img alt="License" src="https://img.shields.io/badge/license-MIT-green.svg">
-  <img alt="Astrophysics" src="https://img.shields.io/badge/field-Astrophysics-8A2BE2.svg">
-</p>
-
----
+**Bionium-X** is a rigorous, pure-Python scientific library for high-performance exoplanetary biosignature detection and atmospheric modeling. Inspired by the architectural standards of modern astrophysics tools (e.g., Stingray), it provides the foundational mathematical and machine-learning frameworks required for analyzing transmission and emission spectra.
 
 ## 1. Bionium-X
 **Bionium-X** is a research-grade, AI-based open-source platform designed to detect potential biosignatures in exoplanet atmospheres using transmission and emission spectral data. By parsing highly-dimensional signals from orbital telescopes, the system probabilistically estimates the presence of critical biological precursors—thereby advancing the automated search for extraterrestrial life.
