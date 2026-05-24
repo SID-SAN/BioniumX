@@ -1,3 +1,14 @@
+---
+title: Bionium-X Exoplanet Biosignature Detection
+emoji: 🪐
+colorFrom: indigo
+colorTo: purple
+sdk: streamlit
+sdk_version: 1.40.0
+app_file: examples/app.py
+pinned: false
+---
+
 <div align="center">
   <h1>🌌 Bionium-X</h1>
   <h3>Deep Learning for Biosignature Detection in Exoplanet Atmospheres</h3>
