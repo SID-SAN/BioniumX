@@ -2,7 +2,7 @@
   <img src="docs/_static/bioniumx_logo.jpg" alt="Bionium-X Logo" width="300">
 </p>
 
-# Bionium-X
+# BioniumX
 
 <table>
 <tr>
